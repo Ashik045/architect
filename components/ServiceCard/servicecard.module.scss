@@ -1,0 +1,97 @@
+.service_card {
+  background-color: white;
+  padding: 40px 20px;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+  border-left: 2px solid #22d1ee;
+  border-radius: 1px;
+  display: inline-block;
+  color: #fff;
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  background: none;
+  color: black;
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #22d1ee;
+    transition: all 0.4s;
+    z-index: -1;
+  }
+  &:hover {
+    color: #fff;
+    &:before {
+      width: 100%;
+    }
+  }
+
+  .service_card_icon {
+    font-size: 40px;
+    color: #22d1ee;
+  }
+  h2 {
+    transition: all 0.05s ease;
+  }
+
+  h2:hover {
+    color: black;
+    cursor: pointer;
+  }
+
+  p {
+    color: rgb(77, 75, 75);
+    font-size: 14px;
+    line-height: 25px;
+  }
+
+  .ser_card_btn {
+    padding: 9px 15px;
+    border: none;
+    background: none;
+    border-radius: 20px;
+    font-weight: bold;
+    border: 1px solid rgb(116, 114, 114);
+    cursor: pointer;
+    align-items: center;
+    margin-top: 10px;
+
+    .ser_card_btn_icon {
+      padding-top: 3px;
+      color: black;
+      transition: all 0.3s ease;
+    }
+  }
+  .ser_card_btn:hover .ser_card_btn_icon {
+    margin-left: 5px;
+  }
+}
+
+.service_card:hover {
+  .service_card_icon {
+    color: white;
+  }
+
+  p {
+    color: white;
+  }
+
+  .ser_card_btn {
+    border: none;
+    background-color: white;
+    color: #65e4fa;
+  }
+}

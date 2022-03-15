@@ -1,0 +1,66 @@
+.feature_card {
+  background-color: #28c7fa;
+  padding: 40px 20px;
+  text-align: center;
+  color: white;
+
+  h2:hover {
+    transition: all 0.4s ease;
+    color: black;
+    cursor: pointer;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 20px;
+    color: rgb(114, 112, 112);
+  }
+
+  .feature_card_btn {
+    padding: 9px 15px;
+    font-weight: bold;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s ease;
+  }
+
+  .feature_card_btn:hover {
+    background-color: black;
+    color: white;
+  }
+}
+
+.feature_card:hover {
+  -webkit-animation: rotate-scale-down-diag-1 0.7s linear both;
+  animation: rotate-scale-down-diag-1 0.7s linear both;
+}
+
+@-webkit-keyframes rotate-scale-down-diag-1 {
+  0% {
+    -webkit-transform: scale(1) rotate3d(1, 1, 0, 0deg);
+    transform: scale(1) rotate3d(1, 1, 0, 0deg);
+  }
+  50% {
+    -webkit-transform: scale(0.5) rotate3d(1, 1, 0, -180deg);
+    transform: scale(0.5) rotate3d(1, 1, 0, -180deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotate3d(1, 1, 0, -360deg);
+    transform: scale(1) rotate3d(1, 1, 0, -360deg);
+  }
+}
+@keyframes rotate-scale-down-diag-1 {
+  0% {
+    -webkit-transform: scale(1) rotate3d(1, 1, 0, 0deg);
+    transform: scale(1) rotate3d(1, 1, 0, 0deg);
+  }
+  50% {
+    -webkit-transform: scale(0.5) rotate3d(1, 1, 0, -180deg);
+    transform: scale(0.5) rotate3d(1, 1, 0, -180deg);
+  }
+  100% {
+    -webkit-transform: scale(1) rotate3d(1, 1, 0, -360deg);
+    transform: scale(1) rotate3d(1, 1, 0, -360deg);
+  }
+}

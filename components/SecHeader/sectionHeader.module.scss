@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap");
+
+.sec_header {
+  text-align: center;
+  margin-top: 70px;
+  margin-bottom: 50px;
+
+  .sec_header_title {
+    font-size: 35px;
+    font-family: "Fredoka", sans-serif;
+    color: #f9ff21;
+  }
+
+  .sec_header_txt {
+    font-family: "Oswald", sans-serif;
+    color: rgb(66, 65, 65);
+    letter-spacing: 1px;
+  }
+}

@@ -1,0 +1,31 @@
+.feature_sec {
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 50px;
+  .feature_main {
+    display: grid;
+    grid-template-columns: 27% 27% 27%;
+    grid-gap: 35px;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .feature_sec {
+    .feature_main {
+      display: grid;
+      grid-template-columns: 45% 45%;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .feature_sec {
+    .feature_main {
+      display: grid;
+      grid-template-columns: 95%;
+    }
+  }
+}
