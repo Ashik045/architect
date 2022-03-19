@@ -1,0 +1,38 @@
+.input_div {
+  margin-top: 10px;
+
+  label {
+    font-weight: 500;
+  }
+
+  .input {
+    display: block;
+    margin-top: 4px;
+    padding: 8px 15px;
+    width: 90%;
+    border: none;
+    border: 1px solid rgb(150, 148, 148);
+    // border-bottom: 2px solid rgb(116, 114, 114);
+    border-radius: 4px;
+  }
+
+  span {
+    color: red;
+    font-size: 14px;
+    display: none;
+    margin-top: 1px;
+    padding: 0px 5px;
+  }
+
+  .input:invalid[focused="true"] ~ span {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  .input_div {
+    .input {
+      width: 95%;
+    }
+  }
+}

@@ -40,13 +40,17 @@ function Navbar() {
 
             <div className={style.nav_signup}>
                 {user ? (
-                    <button className={style.signup_btn} type="button">
-                        Log In
-                    </button>
+                    <Link href="/login" passHref>
+                        <button className={style.signup_btn} type="button">
+                            Log In
+                        </button>
+                    </Link>
                 ) : (
-                    <button className={style.signup_btn} type="button">
-                        Sign Up
-                    </button>
+                    <Link href="/signup" passHref>
+                        <button className={style.signup_btn} type="button">
+                            Sign Up
+                        </button>
+                    </Link>
                 )}
             </div>
 
@@ -89,21 +93,25 @@ function Navbar() {
                     </Link>
 
                     {user ? (
-                        <button
-                            className={style.signup_btn}
-                            type="button"
-                            onClick={() => setToggler(false)}
-                        >
-                            Log In
-                        </button>
+                        <Link href="/signup" passHref>
+                            <button
+                                className={style.signup_btn}
+                                type="button"
+                                onClick={() => setToggler(false)}
+                            >
+                                Log In
+                            </button>
+                        </Link>
                     ) : (
-                        <button
-                            className={style.signup_btn}
-                            type="button"
-                            onClick={() => setToggler(false)}
-                        >
-                            Sign Up
-                        </button>
+                        <Link href="/signup" passHref>
+                            <button
+                                className={style.signup_btn}
+                                type="button"
+                                onClick={() => setToggler(false)}
+                            >
+                                Sign Up
+                            </button>
+                        </Link>
                     )}
                 </div>
             )}
