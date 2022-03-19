@@ -15,7 +15,7 @@ function Navbar() {
         <div className={style.navbar}>
             <Link href="/" passHref>
                 <div className={style.nav_brand}>
-                    <Image src={brand} alt="nav-logo" height={40} width={40} />
+                    <Image src={brand} alt="nav-logo" height={35} width={35} />
                     <p className={style.nav_brand_txt}>Architect</p>
                 </div>
             </Link>
@@ -33,7 +33,7 @@ function Navbar() {
                 <Link href="/works">
                     <a href="">Works</a>
                 </Link>
-                <Link href="/blogs">
+                <Link href="/blog">
                     <a href="">Blogs</a>
                 </Link>
             </div>
@@ -82,7 +82,7 @@ function Navbar() {
                             Works
                         </a>
                     </Link>
-                    <Link href="/blogs">
+                    <Link href="/blog">
                         <a href="" onClick={() => setToggler(false)}>
                             Blogs
                         </a>

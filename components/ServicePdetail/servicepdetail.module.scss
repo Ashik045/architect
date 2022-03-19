@@ -1,0 +1,34 @@
+.service_sec {
+  margin-top: 90px;
+  margin-bottom: 50px;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+
+  .service_sec_main {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    grid-gap: 35px;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .service_sec {
+    .service_sec_main {
+      display: grid;
+      grid-template-columns: 50% 50%;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .service_sec {
+    .service_sec_main {
+      display: grid;
+      grid-template-columns: 95%;
+    }
+  }
+}

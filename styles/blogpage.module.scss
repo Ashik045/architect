@@ -1,0 +1,18 @@
+.blog_page {
+  width: 85%;
+  margin-top: 110px;
+  margin-left: auto;
+  margin-right: auto;
+
+  .blog_page_header {
+    .blog_page_header_img {
+      object-fit: cover;
+      border-radius: 3px;
+      margin-bottom: -50px;
+    }
+  }
+
+  .blog_page_main {
+    margin-left: 5%;
+  }
+}

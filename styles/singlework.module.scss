@@ -1,0 +1,124 @@
+.singleWork {
+  margin-top: 110px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  .singleWork_head_img {
+    object-fit: cover;
+    filter: brightness(80%);
+    border-radius: 2px;
+  }
+
+  .singleWork_main {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: 70% 1% 29%;
+    grid-gap: 25px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+    margin-bottom: 50px;
+
+    .singleWork_left {
+      padding-right: 50px;
+
+      p {
+        color: rgb(145, 143, 143);
+        line-height: 26px;
+      }
+    }
+
+    .singleWork_center {
+      width: 2px;
+      background-color: rgb(214, 212, 212);
+      display: block;
+    }
+
+    .singleWork_right {
+      .right_div {
+        margin-bottom: 28px;
+        h4 {
+          font-weight: 500;
+        }
+
+        p {
+          margin-top: -10px;
+          color: rgb(145, 143, 143);
+        }
+
+        .right_div_icon {
+          margin-left: 8px;
+          transition: all 0.2s ease;
+          font-size: 21px;
+        }
+
+        .right_div_icon:hover {
+          color: #22d1ee;
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
+
+  .singleWork_bottom {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+
+    h1 {
+      margin-bottom: 50px;
+      font-size: 35px;
+    }
+
+    .singleWork_bottom_main {
+      display: grid;
+      grid-template-columns: 30% 30% 30%;
+      grid-gap: 30px;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .singleWork {
+    .singleWork_bottom {
+      .singleWork_bottom_main {
+        display: grid;
+        grid-template-columns: 50% 50%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .singleWork {
+    .singleWork_main {
+      display: grid;
+      grid-template-columns: 95%;
+      margin-top: 40px;
+      margin-bottom: 0px;
+
+      .singleWork_center {
+        display: none;
+      }
+
+      .singleWork_left {
+        padding-right: 0px;
+      }
+    }
+
+    .singleWork_bottom {
+      h1 {
+        font-size: 27px;
+        margin-bottom: 30px;
+      }
+      .singleWork_bottom_main {
+        display: grid;
+        grid-template-columns: 95%;
+      }
+    }
+  }
+}
