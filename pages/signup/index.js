@@ -70,6 +70,7 @@ function Signup() {
     const handleSub = (e) => {
         e.preventDefault();
         try {
+            // after user sign up successfully. redirect the user to login page
             router.push('/login');
         } catch (error) {
             console.log(error);

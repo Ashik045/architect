@@ -55,9 +55,11 @@ function Login() {
         e.preventDefault();
         try {
             console.log(values);
+
+            // after user log in successfully. Show a success msg & redirect the user to login page
             Toast.fire({
                 icon: 'success',
-                title: 'Signed in successfully',
+                title: 'Log in successfully',
             });
 
             setValues({
