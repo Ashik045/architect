@@ -6,26 +6,26 @@ import style from './blogcard.module.scss';
 
 function BlogCard({ bloglist }) {
     return (
-        <Link href="/blog/124" passHref>
-            <div className={style.blog_cards}>
-                {bloglist.map((lists) => (
-                    <div key={lists.id} className={style.blog_card}>
-                        <Image
-                            src={lists.image}
-                            width={300}
-                            height={200}
-                            alt="card-img"
-                            className={style.blog_card_img}
-                        />
-                        <p>{lists.createdAt}</p>
-                        <h3>{lists.title}</h3>
-                        <p className={style.readmore}>
-                            Read More <FaArrowRight className={style.readmore_icon} />
-                        </p>
-                    </div>
+        <div className={style.blog_cards}>
+                {bloglist?.map((lists) => (
+                    <Link href={`/blog/${lists._id}`} passHref>
+                        <div key={lists._id} className={style.blog_card}>
+                            <Image
+                                src={lists.image}
+                                width={300}
+                                height={200}
+                                alt="card-img"
+                                className={style.blog_card_img}
+                            />
+                            <p>{new Date(lists.createdAt).toLocaleString()}</p>
+                            <h3>{lists.title}</h3>
+                            <p className={style.readmore}>
+                                Read More <FaArrowRight className={style.readmore_icon} />
+                            </p>
+                        </div>
+                    </Link>
                 ))}
             </div>
-        </Link>
     );
 }
 

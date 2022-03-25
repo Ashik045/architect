@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Head from 'next/head';
 import Blogs from '../components/Blogs/Blogs';
 import Experience from '../components/Experience/Experience';
@@ -7,25 +8,8 @@ import Header from '../components/Header/Header';
 import RecentWork from '../components/RecentWork/RecentWork';
 import Service from '../components/Service/Service';
 import Team from '../components/Team/Team';
-import image2 from '../images/recentwork2.jpg';
-import image1 from '../images/recentwork4.jpg';
 
-const blogList = [
-    {
-        id: 1,
-        image: image1,
-        createdAt: '15 November 2018',
-        title: 'Best buildings of 2018 revealed at day one of World Architecture Festival 2018.',
-    },
-    {
-        id: 2,
-        image: image2,
-        createdAt: '25 July 2003',
-        title: 'Sunken washroom by Studio 304 allows residents to bathe in a garden setting.',
-    },
-];
-
-export default function Home() {
+export default function Home({ recentWorkDetails, blogList }) {
     return (
         <div>
             <Head>
@@ -38,11 +22,25 @@ export default function Home() {
                 <Feature />
                 <Experience />
                 <Service />
-                <RecentWork />
+                <RecentWork recentWorkDetails={recentWorkDetails} />
                 <Blogs bloglist={blogList} />
                 <Team />
                 <FooterDetail />
             </main>
         </div>
     );
+}
+
+export async function getStaticProps() {
+    const res = await axios.get('http://localhost:4000/api/works');
+    const res2 = await axios.get('http://localhost:4000/api/blogs');
+    const workPosts = await res.data.message;
+    const blogList = await res2.data.message;
+
+    return {
+        props: {
+            recentWorkDetails: workPosts.slice(0, 6),
+            blogList: blogList.slice(0, 2),
+        },
+    };
 }

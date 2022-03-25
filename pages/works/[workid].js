@@ -1,69 +1,37 @@
+import axios from 'axios';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 import FooterDetail from '../../components/FooterDetail/FooterDetail';
 import RecentWorkCard from '../../components/RecentWorkCard/RecentWorkCard';
-import img1 from '../../images/recentwork1.jpg';
-import workHeaderImg from '../../images/recentwork2.jpg';
-import img3 from '../../images/recentwork3.jpg';
-import img2 from '../../images/recentwork4.jpg';
 import style from '../../styles/singlework.module.scss';
 
-const recentWorkDetails = [
-    {
-        id: 1,
-        image: img1,
-        title: 'Grand Hall',
-        category: 'RESIDENTIAL',
-        year: '2018',
-    },
-    {
-        id: 2,
-        image: img2,
-        title: 'Green Hause',
-        category: 'COMMERTIAL',
-        year: '2020',
-    },
-    {
-        id: 3,
-        image: img3,
-        title: 'Contemporary Villa',
-        category: 'LANDSCAPE',
-        year: '2010',
-    },
-];
+function SingleWork({recentWorkDetails, workPosts3}) {
+    const {image, category, client, createdAt, desc, location, title} = recentWorkDetails
+    const router = useRouter()
 
-function SingleWork() {
+    if(router.isFallback) {
+        return <p style={{textAlign: 'center', marginTop: '150px'}}>Loading...</p>
+    }
+
     return (
         <>
             <div className={style.singleWork}>
                 <Image
-                    src={workHeaderImg}
+                    src={image}
                     alt="workdetail-img"
                     className={style.singleWork_head_img}
-                    height={480}
+                    height={500}
+                    width={1600}
                 />
 
                 <div className={style.singleWork_main}>
                     <div className={style.singleWork_left}>
-                        <h1>Grand Hall</h1>
-                        <p>
-                            Nulla porttitor accumsan tincidunt praesent sapien massa convallis
-                            pellen tesque necp egestas non nisi vivamus suscipite nulla porttitor
-                            accumsan tincidunt praesent sapien massa convallisa pellentesque.
-                        </p>
-                        <br />
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti minus
-                            atque nostrum veniam velit eveniet quam molestias. Quae sed repudiandae
-                            aspernatur impedit porro maxime dolorum nulla quis veritatis tenetur
-                            repellendus quas cum ut, ea molestiae reiciendis non officia velit
-                            soluta placeat facilis ad nesciunt quibusdam facere. Temporibus id
-                            eligendi commodi, hic asperiores earum dolor non! Obcaecati, nobis?
-                            Animi atque quo, neque doloribus vero hic sed exercitationem, ea
-                            veritatis esse eaque? Suscipit nesciunt dolorem asperiores modi maxime
-                            quas accusamus ipsum voluptates
-                        </p>
+                        <h1>{title}</h1>
+                        {desc.map((description, index) => {
+                            return <><p key={index}>{description}</p> <br /></>
+                        })}
 
                         <h2>Peoject Goals</h2>
                         <p>
@@ -81,19 +49,19 @@ function SingleWork() {
                     <div className={style.singleWork_right}>
                         <div className={style.right_div}>
                             <h4>Client:</h4>
-                            <p>John Abraham</p>
+                            <p>{client}</p>
                         </div>
                         <div className={style.right_div}>
                             <h4>Date:</h4>
-                            <p>05.04.2017</p>
+                            <p>{new Date(createdAt).toLocaleDateString()}</p>
                         </div>
                         <div className={style.right_div}>
                             <h4>Category:</h4>
-                            <p>Residential</p>
+                            <p>{category}</p>
                         </div>
                         <div className={style.right_div}>
                             <h4>Location:</h4>
-                            <p>Savar, Dhaka</p>
+                            <p>{location}</p>
                         </div>
                         <div className={style.right_div}>
                             <h4>Share:</h4>
@@ -109,8 +77,8 @@ function SingleWork() {
                 <div className={style.singleWork_bottom}>
                     <h1>Related Projects</h1>
                     <div className={style.singleWork_bottom_main}>
-                        {recentWorkDetails.map((items) => (
-                            <RecentWorkCard key={items.id} item={items} />
+                        {workPosts3.map((items) => (
+                            <RecentWorkCard key={items._id} item={items} />
                         ))}
                     </div>
                 </div>
@@ -121,3 +89,36 @@ function SingleWork() {
 }
 
 export default SingleWork;
+
+export async function getStaticPaths() {
+    const res = await axios.get(`http://localhost:4000/api/works`)
+    const data = res.data.message
+
+    const paths = data.map((item) => ({
+         params: {
+            workid: `${item._id}`
+        }
+    }))
+
+    return {
+        paths,
+        fallback: false
+    }
+}
+
+export async function getStaticProps(context) {
+    const {params} = context
+    const res = await axios.get(`http://localhost:4000/api/works/${params.workid}`)
+    const res2 = await axios.get(`http://localhost:4000/api/works`)
+    const workPosts = await res.data.message
+    const workPosts3 = await res2.data.message
+    console.log(params);
+
+    return {
+        props: {
+            recentWorkDetails: workPosts,
+            workPosts3: workPosts3.slice(5, 8)
+        }
+    }
+}
+

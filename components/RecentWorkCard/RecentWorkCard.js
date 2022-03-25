@@ -8,17 +8,17 @@ function RecentWorkCard({ item }) {
         <div className={style.work_card}>
             <Image
                 src={item.image}
-                height={500}
+                height={600}
                 width={450}
                 className={style.work_card_img}
                 alt="recent-work card"
             />
 
             <div className={style.work_card_txt}>
-                <Link href="/works/123" passHref>
+                <Link href={`/works/${item._id}`} passHref>
                     <h2>{item.title}</h2>
                 </Link>
-                <h5>{item.year}</h5>
+                <h5>{new Date(item.createdAt).toLocaleDateString()}</h5>
             </div>
         </div>
     );

@@ -2,14 +2,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaAlignRight, FaTimes } from 'react-icons/fa';
+import { Context } from '../../context/context';
 import brand from '../../images/retool-icon.svg';
 import style from './navbar.module.scss';
 
 function Navbar() {
-    const [user, setUser] = useState(false);
     const [toggler, setToggler] = useState(false);
+    const { user, dispatch } = useContext(Context);
+
+    const handleLogOut = () => {
+        setToggler(false);
+        dispatch({ type: 'LOGOUT' });
+    };
 
     return (
         <div className={style.navbar}>
@@ -40,11 +46,9 @@ function Navbar() {
 
             <div className={style.nav_signup}>
                 {user ? (
-                    <Link href="/login" passHref>
-                        <button className={style.signup_btn} type="button">
-                            Log In
-                        </button>
-                    </Link>
+                    <button className={style.signup_btn} type="button" onClick={handleLogOut}>
+                        Log Out
+                    </button>
                 ) : (
                     <Link href="/signup" passHref>
                         <button className={style.signup_btn} type="button">
@@ -93,15 +97,9 @@ function Navbar() {
                     </Link>
 
                     {user ? (
-                        <Link href="/signup" passHref>
-                            <button
-                                className={style.signup_btn}
-                                type="button"
-                                onClick={() => setToggler(false)}
-                            >
-                                Log In
-                            </button>
-                        </Link>
+                        <button className={style.signup_btn} type="button" onClick={handleLogOut}>
+                            Log Out
+                        </button>
                     ) : (
                         <Link href="/signup" passHref>
                             <button

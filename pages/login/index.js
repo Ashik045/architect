@@ -1,10 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-props-no-spreading */
+import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Swal from 'sweetalert2';
 import Input from '../../components/Input/Input';
+import { Context } from '../../context/context';
 import style from '../../styles/login.module.scss';
 
 function Login() {
@@ -12,6 +14,9 @@ function Login() {
         email: '',
         password: '',
     });
+    const [error, setError] = useState(false);
+    const { dispatch, isFetching } = useContext(Context);
+
     const router = useRouter();
 
     const inputDetails = [
@@ -51,12 +56,18 @@ function Login() {
         },
     });
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            console.log(values);
+            const res = await axios.post('http://localhost:4000/api/auth/login', {
+                email: values.email,
+                password: values.password,
+            });
+            dispatch({ type: 'LOGIN_SUCCESS', payload: res.data.message[0] });
+            console.log(res.data.message);
 
             // after user log in successfully. Show a success msg & redirect the user to login page
+            router.push('/');
             Toast.fire({
                 icon: 'success',
                 title: 'Log in successfully',
@@ -66,9 +77,12 @@ function Login() {
                 email: '',
                 password: '',
             });
-            router.push('/');
-        } catch (error) {
-            console.log(error);
+        } catch {
+            setError(true);
+            dispatch({ type: 'LOGIN_FAILURE' });
+            setValues({
+                password: '',
+            });
         }
     };
 
@@ -86,7 +100,15 @@ function Login() {
                         />
                     ))}
 
-                    <input type="submit" value="Log In" className={style.submit_btn} />
+                    {error && (
+                        <p style={{ color: 'red', marginBottom: '-7px' }}>Authentication failed!</p>
+                    )}
+                    <input
+                        type="submit"
+                        value="Log In"
+                        className={style.submit_btn}
+                        disabled={isFetching}
+                    />
                     <Link href="/signup">
                         <a href="" className={style.login_link}>
                             Don&apos;t have an account? Sign in hare..

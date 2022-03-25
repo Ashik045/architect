@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-props-no-spreading */
+import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
@@ -15,6 +16,7 @@ function Signup() {
         password: '',
         confirmpass: '',
     });
+    const [error, setError] = useState(false)
     const router = useRouter();
 
     const inputDetails = [
@@ -67,13 +69,22 @@ function Signup() {
         setValues({ ...values, [e.target.name]: e.target.value });
     };
 
-    const handleSub = (e) => {
+    const handleSub = async (e) => {
         e.preventDefault();
         try {
+            await axios.post('http://localhost:4000/api/auth/signup', {
+                username: values.username,
+                fullname: values.fullname,
+                email: values.email,
+                password: values.password,
+            })
             // after user sign up successfully. redirect the user to login page
             router.push('/login');
         } catch (error) {
-            console.log(error);
+            setError(true)
+            setValues({
+                confirmpass: ''
+            })
         }
     };
 
@@ -115,6 +126,7 @@ function Signup() {
                             />
                         ))}
 
+                        {error && <p style={{color: 'red', marginBottom: '0px'}}>Authentication failed!</p>}
                         <input type="submit" value="Sign In" className={style.submit_btn} />
                         <Link href="/login">
                             <a href="" className={style.login_link}>
