@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa';
 import Input from '../../components/Input/Input';
 import style from '../../styles/signup.module.scss';
+// import { signIn } from "next-auth/react";
 
 function Signup() {
     const [values, setValues] = useState({
@@ -88,6 +89,14 @@ function Signup() {
         }
     };
 
+    // const handleAuth = async (e) => {
+    //     try {
+            
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
+
     return (
         <div className={style.signup_page}>
             <div className={style.signup_page_main}>
@@ -101,7 +110,7 @@ function Signup() {
                             <FaFacebook className={style.icon} /> Facebook
                         </div>
 
-                        <div className={`${style.left_log} ${style.github}`}>
+                        <div className={`${style.left_log} ${style.github}`} >
                             <FaGithub className={style.icon} /> Github
                         </div>
                     </div>
