@@ -1,15 +1,19 @@
 .about_page {
-  margin-top: 100px;
+  // margin-top: 50px;
 
   .about_page_header {
-    width: 95%;
+    // position: relative;
+    // width: 95%;
+    // height: 550px;
     margin-left: auto;
     margin-right: auto;
-    position: relative;
     .about_page_header_img {
       object-fit: cover;
       border-radius: 2px;
       filter: brightness(50%);
+      // width: 100% !important;
+      // height: 550px !important;
+      // position: relative;
     }
 
     .about_page_header_txt {

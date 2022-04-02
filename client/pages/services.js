@@ -8,12 +8,13 @@ import style from '../styles/service.module.scss';
 function Services() {
     return (
         <div className={style.service_page}>
-            <div className={style.service_page_header}>
+            <div className={style.service_page_header} style={{position: 'relative', height: "100%", width: "95%"}}>
                 <Image
                     src={serviceHeader}
                     alt="service-header"
                     className={style.service_page_header_img}
-                    height={550}
+                    layout="responsive"
+                    objectFit="contain"
                 />
 
                 <div className={style.service_page_header_txt}>
