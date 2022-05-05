@@ -8,7 +8,10 @@ import style from '../styles/service.module.scss';
 function Services() {
     return (
         <div className={style.service_page}>
-            <div className={style.service_page_header} style={{position: 'relative', height: "100%", width: "95%"}}>
+            <div
+                className={style.service_page_header}
+                style={{ position: 'relative', height: '100%', width: '95%' }}
+            >
                 <Image
                     src={serviceHeader}
                     alt="service-header"

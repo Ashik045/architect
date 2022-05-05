@@ -4,7 +4,7 @@ import RecentWorkCard from '../RecentWorkCard/RecentWorkCard';
 import SectionHeader from '../SecHeader/SectionHeader';
 import style from './recentwork.module.scss';
 
-function RecentWork({recentWorkDetails}) {
+function RecentWork({ recentWorkDetails }) {
     const [items, setItems] = useState(recentWorkDetails);
     const categoryBtn = ['ALL', ...new Set(recentWorkDetails.map((item) => item.category))];
 
@@ -26,6 +26,7 @@ function RecentWork({recentWorkDetails}) {
 
                 <div className={style.recent_work_card_sec}>
                     {items.map((item) => (
+                        // eslint-disable-next-line no-underscore-dangle
                         <RecentWorkCard key={item._id} item={item} />
                     ))}
                 </div>

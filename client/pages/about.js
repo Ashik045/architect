@@ -9,7 +9,10 @@ import style from '../styles/about.module.scss';
 function About() {
     return (
         <div className={style.about_page}>
-            <div className={style.about_page_header} style={{position: 'relative', height: "100%", width: "95%"}}>
+            <div
+                className={style.about_page_header}
+                style={{ position: 'relative', height: '70%', width: '95%' }}
+            >
                 <Image
                     src={aboutHeader}
                     alt="about-header"

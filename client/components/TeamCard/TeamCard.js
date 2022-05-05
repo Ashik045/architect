@@ -10,8 +10,8 @@ function TeamCard({ teamDetail }) {
                 src={teamDetail.image}
                 className={style.team_card_img}
                 alt="team-member"
-                height={400}
-                width={350}
+                height={500}
+                width={550}
             />
 
             <div className={style.team_card_body_iconss}>

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -9,7 +10,7 @@ function RecentWorkCard({ item }) {
             <Image
                 src={item.image}
                 height={600}
-                width={450}
+                width={500}
                 className={style.work_card_img}
                 alt="recent-work card"
             />

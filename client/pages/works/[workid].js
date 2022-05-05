@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable react/no-array-index-key */
 import axios from 'axios';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -7,12 +9,12 @@ import FooterDetail from '../../components/FooterDetail/FooterDetail';
 import RecentWorkCard from '../../components/RecentWorkCard/RecentWorkCard';
 import style from '../../styles/singlework.module.scss';
 
-function SingleWork({recentWorkDetails, workPosts3}) {
-    const {image, category, client, createdAt, desc, location, title} = recentWorkDetails
-    const router = useRouter()
+function SingleWork({ recentWorkDetails, workPosts3 }) {
+    const { image, category, client, createdAt, desc, location, title } = recentWorkDetails;
+    const router = useRouter();
 
-    if(router.isFallback) {
-        return <p style={{textAlign: 'center', marginTop: '150px'}}>Loading...</p>
+    if (router.isFallback) {
+        return <p style={{ textAlign: 'center', marginTop: '150px' }}>Loading...</p>;
     }
 
     return (
@@ -22,16 +24,18 @@ function SingleWork({recentWorkDetails, workPosts3}) {
                     src={image}
                     alt="workdetail-img"
                     className={style.singleWork_head_img}
-                    height={500}
-                    width={1600}
+                    height={700}
+                    width={1800}
                 />
 
                 <div className={style.singleWork_main}>
                     <div className={style.singleWork_left}>
                         <h1>{title}</h1>
-                        {desc.map((description, index) => {
-                            return <><p key={index}>{description}</p> <br /></>
-                        })}
+                        {desc.map((description, index) => (
+                            <>
+                                <p key={index}>{description}</p> <br />
+                            </>
+                        ))}
 
                         <h2>Peoject Goals</h2>
                         <p>
@@ -91,34 +95,33 @@ function SingleWork({recentWorkDetails, workPosts3}) {
 export default SingleWork;
 
 export async function getStaticPaths() {
-    const res = await axios.get(`http://localhost:4000/api/works`)
-    const data = res.data.message
+    const res = await axios.get(`http://localhost:4000/api/works`);
+    const data = res.data.message;
 
     const paths = data.map((item) => ({
-         params: {
-            workid: `${item._id}`
-        }
-    }))
+        params: {
+            workid: `${item._id}`,
+        },
+    }));
 
     return {
         paths,
-        fallback: false
-    }
+        fallback: false,
+    };
 }
 
 export async function getStaticProps(context) {
-    const {params} = context
-    const res = await axios.get(`http://localhost:4000/api/works/${params.workid}`)
-    const res2 = await axios.get(`http://localhost:4000/api/works`)
-    const workPosts = await res.data.message
-    const workPosts3 = await res2.data.message
+    const { params } = context;
+    const res = await axios.get(`http://localhost:4000/api/works/${params.workid}`);
+    const res2 = await axios.get(`http://localhost:4000/api/works`);
+    const workPosts = await res.data.message;
+    const workPosts3 = await res2.data.message;
     console.log(params);
 
     return {
         props: {
             recentWorkDetails: workPosts,
-            workPosts3: workPosts3.slice(5, 8)
-        }
-    }
+            workPosts3: workPosts3.slice(5, 8),
+        },
+    };
 }
-

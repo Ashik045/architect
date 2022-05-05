@@ -2,28 +2,24 @@
   // margin-top: 50px;
 
   .about_page_header {
-    // position: relative;
-    // width: 95%;
-    // height: 550px;
     margin-left: auto;
     margin-right: auto;
     .about_page_header_img {
+      // position: relative;
       object-fit: cover;
       border-radius: 2px;
       filter: brightness(50%);
-      // width: 100% !important;
-      // height: 550px !important;
-      // position: relative;
     }
 
     .about_page_header_txt {
       text-align: center;
       position: absolute;
-      top: 220px;
+      top: 400px !important;
       color: white;
       width: 100%;
       margin-left: auto;
       margin-right: auto;
+      // margin-top: 200px !important;
 
       h1 {
         font-size: 45px;
@@ -37,12 +33,12 @@
   }
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1020px) {
   .about_page {
     .about_page_header {
       .about_page_header_txt {
         position: absolute;
-        top: 130px;
+        top: 250px !important;
       }
     }
   }
@@ -53,7 +49,7 @@
     .about_page_header {
       .about_page_header_txt {
         position: absolute;
-        top: 60px;
+        top: 150px !important;
 
         h1 {
           font-size: 35px;
@@ -72,7 +68,7 @@
     .about_page_header {
       .about_page_header_txt {
         position: absolute;
-        top: 10px;
+        top: 100px !important;
 
         h1 {
           font-size: 25px;
@@ -80,6 +76,7 @@
         p {
           letter-spacing: 1px;
           font-size: 13px;
+          margin-top: -10px;
         }
       }
     }

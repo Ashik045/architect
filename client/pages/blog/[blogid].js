@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable react/no-array-index-key */
 import axios from 'axios';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -6,14 +8,12 @@ import BlogCard from '../../components/BlogCard/BlogCard';
 import FooterDetail from '../../components/FooterDetail/FooterDetail';
 import style from '../../styles/blogdetail.module.scss';
 
-
-
-function BlogDetail({blogItem, blogList }) {
-    const router = useRouter()
-    const {image, title, createdAt, desc1, desc2, desc3quote, desc3, features} = blogItem
+function BlogDetail({ blogItem, blogList }) {
+    const router = useRouter();
+    const { image, title, createdAt, desc1, desc2, desc3quote, desc3, features } = blogItem;
 
     if (router.isFallback) {
-        return <p style={{textAlign: 'center', marginTop: '150px'}}>Loading...</p>
+        return <p style={{ textAlign: 'center', marginTop: '150px' }}>Loading...</p>;
     }
 
     return (
@@ -23,26 +23,25 @@ function BlogDetail({blogItem, blogList }) {
                     src={image}
                     alt="header-img"
                     className={style.blog_detail_header_img}
-                    height={550}
-                    width={1600}
+                    height={600}
+                    width={1900}
                 />
 
                 <div className={style.blog_detail_header_txt}>
-                    <h1>
-                       {title}
-                    </h1>
+                    <h1>{title}</h1>
                     <small>
-                        {new Date(createdAt).toDateString()}, <span className={style.blog_detail_tags}>Architechure</span>
+                        {new Date(createdAt).toDateString()},{' '}
+                        <span className={style.blog_detail_tags}>Architechure</span>
                     </small>
                 </div>
             </div>
 
             <div className={style.blog_detailss}>
-                <p>{desc1}
-                </p>
+                <p>{desc1}</p>
                 <br />
                 <p>
-                    <b>Think about it:</b>{desc2}
+                    <b>Think about it:</b>
+                    {desc2}
                 </p>
                 <br />
 
@@ -54,9 +53,9 @@ function BlogDetail({blogItem, blogList }) {
 
                 <h2>List of features</h2>
                 <ul>
-                    {features.map((item, index) => {
-                        return <li key={index}>{item}</li>
-                    })}
+                    {features.map((item, index) => (
+                        <li key={index}>{item}</li>
+                    ))}
                 </ul>
 
                 <h2>Summary</h2>
@@ -84,32 +83,32 @@ function BlogDetail({blogItem, blogList }) {
 export default BlogDetail;
 
 export async function getStaticPaths() {
-    const res = await axios.get(`http://localhost:4000/api/blogs`)
-    const data = res.data.message
+    const res = await axios.get(`http://localhost:4000/api/blogs`);
+    const data = res.data.message;
 
     const paths = data.map((item) => ({
         params: {
-           blogid: `${item._id}`
-       }
-   }))
+            blogid: `${item._id}`,
+        },
+    }));
 
     return {
         paths,
         fallback: false,
-    }
+    };
 }
 
 export async function getStaticProps(context) {
     const { params } = context;
-    const res = await  axios.get(`http://localhost:4000/api/blogs/${params.blogid}`)
-    const res2 = await  axios.get('http://localhost:4000/api/blogs')
-    const data = await res.data.message
-    const data2 = await res2.data.message
+    const res = await axios.get(`http://localhost:4000/api/blogs/${params.blogid}`);
+    const res2 = await axios.get('http://localhost:4000/api/blogs');
+    const data = await res.data.message;
+    const data2 = await res2.data.message;
 
     return {
         props: {
             blogItem: data,
-            blogList: data2.slice(6, 9)
-        }
-    }
+            blogList: data2.slice(6, 9),
+        },
+    };
 }

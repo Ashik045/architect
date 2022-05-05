@@ -29,7 +29,7 @@ function Header() {
                 loop
             >
                 <SwiperSlide className={style.slider_img}>
-                    <Image alt="slider-img" src={slider1} />
+                    <Image alt="slider-img" src={slider1} layout="fill" objectFit="cover" />
                     <div className={style.slider_img_txt}>
                         <h1>
                             Modern House<span className={style.dot}>.</span>
@@ -44,7 +44,7 @@ function Header() {
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className={style.slider_img}>
-                    <Image alt="slider-img" src={slider2} />
+                    <Image alt="slider-img" src={slider2} layout="fill" objectFit="cover" />
                     <div className={style.slider_img_txt}>
                         <h1>
                             Horizon Urban<span className={style.dot}>.</span>
@@ -59,7 +59,7 @@ function Header() {
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className={style.slider_img}>
-                    <Image alt="slider-img" src={slider3} />
+                    <Image alt="slider-img" src={slider3} layout="fill" objectFit="cover" />
                     <div className={style.slider_img_txt}>
                         <h1>
                             Astralian Museum<span className={style.dot}>.</span>
