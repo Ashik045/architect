@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-props-no-spreading */
 import axios from 'axios';
@@ -17,7 +18,7 @@ function Signup() {
         password: '',
         confirmpass: '',
     });
-    const [error, setError] = useState(false)
+    const [error, setError] = useState(false);
     const router = useRouter();
 
     const inputDetails = [
@@ -78,20 +79,20 @@ function Signup() {
                 fullname: values.fullname,
                 email: values.email,
                 password: values.password,
-            })
+            });
             // after user sign up successfully. redirect the user to login page
             router.push('/login');
         } catch (error) {
-            setError(true)
+            setError(true);
             setValues({
-                confirmpass: ''
-            })
+                confirmpass: '',
+            });
         }
     };
 
     // const handleAuth = async (e) => {
     //     try {
-            
+
     //     } catch (error) {
     //         console.log(error);
     //     }
@@ -110,7 +111,7 @@ function Signup() {
                             <FaFacebook className={style.icon} /> Facebook
                         </div>
 
-                        <div className={`${style.left_log} ${style.github}`} >
+                        <div className={`${style.left_log} ${style.github}`}>
                             <FaGithub className={style.icon} /> Github
                         </div>
                     </div>
@@ -135,7 +136,11 @@ function Signup() {
                             />
                         ))}
 
-                        {error && <p style={{color: 'red', marginBottom: '0px'}}>Authentication failed!</p>}
+                        {error && (
+                            <p style={{ color: 'red', marginBottom: '0px' }}>
+                                Authentication failed!
+                            </p>
+                        )}
                         <input type="submit" value="Sign In" className={style.submit_btn} />
                         <Link href="/login">
                             <a href="" className={style.login_link}>
