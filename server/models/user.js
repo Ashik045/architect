@@ -20,7 +20,7 @@ const UserSchema = mongoose.Schema(
             required: true,
         },
     },
-    { timeStamps: true },
+    { timeStamps: true }
 );
 
 // create user model

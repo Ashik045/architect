@@ -74,7 +74,7 @@ function Signup() {
     const handleSub = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:4000/api/auth/signup', {
+            await axios.post('https://architect22.herokuapp.com/api/auth/signup', {
                 username: values.username,
                 fullname: values.fullname,
                 email: values.email,

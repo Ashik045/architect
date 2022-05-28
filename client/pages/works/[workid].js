@@ -32,9 +32,9 @@ function SingleWork({ recentWorkDetails, workPosts3 }) {
                     <div className={style.singleWork_left}>
                         <h1>{title}</h1>
                         {desc.map((description, index) => (
-                            <>
-                                <p key={index}>{description}</p> <br />
-                            </>
+                            <div key={index}>
+                                <p>{description}</p> <br />
+                            </div>
                         ))}
 
                         <h2>Peoject Goals</h2>
@@ -95,7 +95,7 @@ function SingleWork({ recentWorkDetails, workPosts3 }) {
 export default SingleWork;
 
 export async function getStaticPaths() {
-    const res = await axios.get(`http://localhost:4000/api/works`);
+    const res = await axios.get(`https://architect22.herokuapp.com/api/works`);
     const data = res.data.message;
 
     const paths = data.map((item) => ({
@@ -112,8 +112,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
     const { params } = context;
-    const res = await axios.get(`http://localhost:4000/api/works/${params.workid}`);
-    const res2 = await axios.get(`http://localhost:4000/api/works`);
+    const res = await axios.get(`https://architect22.herokuapp.com/api/works/${params.workid}`);
+    const res2 = await axios.get(`https://architect22.herokuapp.com/api/works`);
     const workPosts = await res.data.message;
     const workPosts3 = await res2.data.message;
     console.log(params);

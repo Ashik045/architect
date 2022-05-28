@@ -37,7 +37,7 @@ function BlogPage({ blogList }) {
 export default BlogPage;
 
 export async function getStaticProps() {
-    const res2 = await axios.get('http://localhost:4000/api/blogs');
+    const res2 = await axios.get('https://architect22.herokuapp.com/api/blogs');
     const data = await res2.data.message;
 
     return {

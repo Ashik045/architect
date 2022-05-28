@@ -32,7 +32,7 @@ const BlogSchema = mongoose.Schema(
             required: true,
         },
     },
-    { timestamps: true },
+    { timestamps: true }
 );
 
 // create user model

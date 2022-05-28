@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // enternal import
 const express = require('express');
 const dotenv = require('dotenv');
@@ -25,6 +26,13 @@ mongoose
         console.log(err);
     });
 
+// home route
+app.get('/api', (req, res) => {
+    res.status(200).json({
+        message: 'server running.',
+    });
+});
+
 // application routing
 app.use('/api', authRoute);
 app.use('/api', worksRoute);
@@ -47,7 +55,11 @@ app.use((err, req, res, next) => {
         error: err,
     });
 });
+
+const port = process.env.PORT || 5000;
+const host = process.env.HOST || '0.0.0.0';
+
 // server connection port
-app.listen(process.env.APP_CONNECTION_PORT || 4000, () => {
-    console.log(`connected on ${process.env.APP_CONNECTION_PORT} port`);
+app.listen(port, host, () => {
+    console.log(`connected on ${process.env.PORT} port`);
 });

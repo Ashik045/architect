@@ -59,12 +59,11 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('http://localhost:4000/api/auth/login', {
+            const res = await axios.post('https://architect22.herokuapp.com/api/auth/login', {
                 email: values.email,
                 password: values.password,
             });
             dispatch({ type: 'LOGIN_SUCCESS', payload: res.data.message[0] });
-            console.log(res.data.message);
 
             // after user log in successfully. Show a success msg & redirect the user to login page
             router.push('/');
